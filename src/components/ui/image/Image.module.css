@@ -1,0 +1,21 @@
+.product__image__container {
+  width: 240px;
+}
+.product__image__wrapper {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 125%;
+}
+.product__image__photo {
+  bottom: 0;
+  display: block;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}

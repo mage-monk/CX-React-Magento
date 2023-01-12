@@ -1,0 +1,19 @@
+.product__items {
+  font-size: 0;
+  letter-spacing: -1px;
+  line-height: 0;
+}
+.product__items .image:hover {
+  opacity: 0.8;
+}
+
+.product__items button:hover {
+  opacity: 0.85;
+  display: flex;
+}
+
+@media (min-width: 1024px), print {
+  .product__items {
+    margin: 0;
+  }
+}

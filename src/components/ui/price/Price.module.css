@@ -1,0 +1,10 @@
+.price__box {
+  margin: 10px px 0 25px;
+}
+.price__box .price {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.price__container .price {
+  font-size: 1.4rem;
+}

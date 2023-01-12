@@ -1,0 +1,11 @@
+.product__item__name {
+  display: block;
+  hyphens: auto;
+  margin: 5px 0;
+  word-wrap: break-word;
+}
+.product__item__name a.product__item__link {
+  font-weight: 400;
+  color: #333333;
+  text-decoration: none;
+}

@@ -1,0 +1,31 @@
+/* .search__bar {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.search__bar .search {
+  width: 30%;
+}
+
+.search__bar ul li {
+  font-size: 20px;
+} */
+
+.action__search {
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 24px;
+  line-height: 20px;
+  display: block;
+  cursor: pointer;
+  padding: 0;
+}
+.action__search:hover {
+  background: none;
+  border-color: none;
+}

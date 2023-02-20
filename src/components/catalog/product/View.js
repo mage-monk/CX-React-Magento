@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./View.module.css";
 import { Link, useLocation } from "react-router-dom";
 import useHttp from "../../../hooks/use-http";
@@ -7,6 +7,8 @@ import MagentoConfig from "../../../config/Magento";
 import Media from "./view/Media";
 import AddToCart from "./view/AddToCart";
 import TabList from "./view/TabList";
+import Related from "./view/Related";
+import Share from "../../share/Share";
 
 const View = (props) => {
   const location = useLocation();
@@ -14,8 +16,13 @@ const View = (props) => {
   const [loading, setLoading] = useState(false);
 
   const [product, setProduct] = useState({});
+  const [related, setRelated] = useState([]);
+  const [relatedDiv, setRelatedDiv] = useState(null);
+  const shareUrl = window.location.href;
+
   const getProduct = (productObject) => {
     productObject.image = null;
+    const relatedProducts = [];
     setLoading(false);
     if (productObject?.custom_attributes.length > 0) {
       for (const loadedProduct of productObject?.custom_attributes) {
@@ -24,6 +31,17 @@ const View = (props) => {
         }
       }
     }
+    if (productObject?.product_links.length > 0) {
+      productObject.product_links.map((rProd) => {
+        if (rProd.link_type === "related") {
+          relatedProducts.push(rProd.linked_product_sku);
+        }
+      });
+      if (relatedProducts.length > 0) {
+        setRelated(relatedProducts);
+      }
+    }
+
     setProduct(productObject);
   };
 
@@ -39,18 +57,33 @@ const View = (props) => {
   );
   useEffect(() => {
     setLoading(true);
+    setRelated([]);
     fetchProduct();
   }, [fetchProduct, sku]);
 
+  const onSimilarClick = () => {
+    relatedDiv.current.scrollIntoView({
+      behavior: "smooth" /*or smooth*/,
+      block: "nearest",
+    });
+  };
+  const onRelatedElmLoad = (elm) => {
+    setRelatedDiv(elm);
+  };
   return (
     <React.Fragment>
       {loading && <div className="loading"></div>}
       {!loading && product.id && (
         <React.Fragment>
-          <div className="pt-24 pb-24 flex between-xs">
+          <div className="pt-24 pb-24 flex between-xs overflow-hidden">
             <div className="pr-r-40 w100p">
               <div className="row">
-                {product && <Media mediaImgs={product.media_gallery_entries} />}
+                {product && (
+                  <Media
+                    mediaImgs={product.media_gallery_entries}
+                    similarClick={onSimilarClick}
+                  />
+                )}
               </div>
             </div>
             <div>
@@ -107,14 +140,17 @@ const View = (props) => {
                     </div>
                   </React.Fragment>
                 )}
+                <Share url={shareUrl} />
+                {product.custom_attributes && (
+                  <div className="pt-24 pb-24  between-xs">
+                    <TabList productAttributes={product.custom_attributes} />
+                  </div>
+                )}
               </div>
             </div>
           </div>
-
-          {product.custom_attributes && (
-            <div className="pt-24 pb-24 flex between-xs">
-              <TabList productAttributes={product.custom_attributes} />
-            </div>
+          {related.length > 0 && (
+            <Related skus={related} realtedLoad={onRelatedElmLoad} />
           )}
         </React.Fragment>
       )}

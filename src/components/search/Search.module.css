@@ -14,7 +14,9 @@
 .search__bar ul li {
   font-size: 20px;
 } */
-
+.search {
+  margin-left: 13px;
+}
 .action__search {
   background: none;
   border: none;

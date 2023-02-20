@@ -7,8 +7,8 @@ import { uiActions } from "../../../../store/ui-slice";
 import AuthContext from "../../../../store/auth-context";
 import MagentoConfig from "../../../../config/Magento";
 import useHttp from "../../../../hooks/use-http";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+import { AiOutlineHeart } from "react-icons/ai";
 
 import Login from "../../../customer/login/Login";
 
@@ -109,7 +109,8 @@ const AddToCart = (props) => {
           </a>
         </div>
         <div className="flex ml-auto b-light-gray br-1 pos-relt">
-          <FontAwesomeIcon icon={faHeart} className="m-15" />
+          {/* <FontAwesomeIcon icon={faHeart} className="m-15" /> */}
+          <AiOutlineHeart color="#2d2d2d" className="m-15" />
         </div>
       </div>
     </React.Fragment>

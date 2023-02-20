@@ -1,6 +1,5 @@
 import { React, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { BsSearch } from "react-icons/bs";
 import SearchForm from "./SearchForm";
 import Button from "../ui/button/Button";
 import styles from "./Search.module.css";
@@ -23,7 +22,7 @@ const Search = () => {
           className={styles.action__search}
           onClick={searchHandler}
         >
-          <FontAwesomeIcon icon={faSearch} />
+          <BsSearch size={25} />
         </Button>
       </div>
     </div>

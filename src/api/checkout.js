@@ -77,7 +77,7 @@ export const saveShippingInfoAndGetPayments = (token, addressObject) => {
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Max-Age": 86400,
+            // "Access-Control-Max-Age": 86400,
             responseType: "json",
             Authorization: `Bearer ${token}`,
           },
@@ -104,6 +104,61 @@ export const saveShippingInfoAndGetPayments = (token, addressObject) => {
           totals: methodsInfo.totals || {},
         })
       );
+    } catch (error) {
+      dispatch(
+        uiActions.showNotification({
+          status: "error",
+          title: "Error!",
+          message: "Fetching cart data failed!",
+        })
+      );
+    }
+  };
+};
+
+export const placeOrder = (token, paymentInfo) => {
+  return async (dispatch) => {
+    const place = async () => {
+      try {
+        dispatch(
+          checkoutActions.isLoading({
+            loader: true,
+          })
+        );
+        let res = await axios({
+          url: MagentoConfig.url + MagentoConfig.api.checkout.order.place,
+          data: paymentInfo,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            //"Access-Control-Max-Age": 86400,
+            responseType: "json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (res.status == 200) {
+          dispatch(
+            checkoutActions.isLoading({
+              loader: false,
+            })
+          );
+          return res.data;
+        }
+        return []; // Don't forget to return something
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    try {
+      const orderId = await place(token, paymentInfo);
+      dispatch(
+        checkoutActions.placeOrder({
+          order_id: orderId || 0,
+        })
+      );
+      return orderId;
     } catch (error) {
       dispatch(
         uiActions.showNotification({

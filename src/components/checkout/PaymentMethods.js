@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthContext from "../../store/auth-context";
 import Items from "./summary/Items";
+import { placeOrder } from "../../api/checkout";
 
 import Card from "../ui/card/Card";
 
@@ -24,8 +25,21 @@ const PaymentMethods = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (abc) => {
-    console.log(abc);
+  const onSubmit = (method) => {
+    const saveAddress = JSON.parse(sessionStorage.getItem("shipping-address"));
+    if (Object.keys(saveAddress).length > 0) {
+      const orderInfo = {
+        paymentMethod: method,
+        billing_address: saveAddress,
+      };
+      dispatch(placeOrder(token, orderInfo)).then(function (orderId) {
+        if (orderId > 0) {
+          navigate("/order/success/", { state: { orderId: orderId } });
+          ctx.onSuccess();
+          sessionStorage.removeItem("shipping-address");
+        }
+      });
+    }
   };
   return (
     <React.Fragment>
@@ -47,9 +61,9 @@ const PaymentMethods = () => {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="payment"
+                      name="method"
                       id={method.code}
-                      {...register("payment", { required: true })}
+                      {...register("method", { required: true })}
                       value={method.code}
                     />
                     <label className="form-check-label" htmlFor={method.code}>
@@ -60,13 +74,13 @@ const PaymentMethods = () => {
                 </React.Fragment>
               ))}
 
-              {errors.payment?.type === "required" && (
+              {errors.method?.type === "required" && (
                 <div className="text-danger mt-3">
                   Please Select Payment Method.
                 </div>
               )}
             </div>
-            <Items></Items>
+            <Items />
             <React.Fragment>
               <div className="flex middle-xs bitween-xs mb-16 clearfix">
                 <div className="w50p p-10 ">

@@ -1,0 +1,155 @@
+.btn__close {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  background: none !important;
+  border: none !important;
+  font-size: 60px;
+  padding: 0;
+  margin: 0;
+  display: none;
+  float: right;
+}
+.search__open .btn__close {
+  display: block;
+  z-index: 3;
+  position: relative;
+  font-size: 2.15rem;
+}
+.block__content {
+  margin-bottom: 0;
+}
+.active {
+  background-color: transparent !important;
+}
+.active .minisearch {
+  z-index: 2;
+}
+.active:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: #000000f2;
+  opacity: 0.9;
+  content: "";
+}
+.minisearch {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 15px;
+  margin-top: 130px;
+}
+
+.minisearch .label {
+  text-decoration: none;
+  display: inline-block;
+  float: right;
+  font-weight: 500;
+}
+
+.minisearch .label:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 35px;
+  line-height: 33px;
+  color: #8f8f8f;
+  content: "";
+  font-family: "icons-blank-theme";
+  vertical-align: middle;
+  display: inline-block;
+  font-weight: normal;
+  overflow: hidden;
+  speak: none;
+  text-align: center;
+}
+.minisearch .label > span {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.minisearch .control {
+  padding: 0;
+  border: none;
+  margin: 0;
+  clear: both;
+}
+
+.minisearch .control .input__text {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-width: auto;
+  height: 40px;
+  border: 0;
+  background: 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: none;
+  letter-spacing: 2px;
+}
+.search__autocomplete {
+  display: none;
+  margin-top: 0px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 3;
+}
+
+.actions .search {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.actions .search > span {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.block__content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.95);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+}
+.block__content {
+  margin-right: 0;
+  width: inherit;
+}
+.search__open .block__content {
+  opacity: 1;
+  visibility: visible;
+  margin: 0;
+  z-index: 10001;
+}

@@ -1,5 +1,8 @@
 # React Storefront Magento
-
+# Magento 2
+# Adobe Commerce - Magento
+# React Storefront for Adobe Commerce - Magento
+# PDP with Simple product
 
 
 ## Getting started

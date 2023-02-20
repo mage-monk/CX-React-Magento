@@ -9,19 +9,6 @@ import Card from "../ui/card/Card";
 
 const ShippingAddress = () => {
   const [loading, setLoading] = useState(false);
-  // const [shippingAddress, setShippingAddress] = useState({
-  //   address: {
-  //     firstname: "",
-  //     lastname: "",
-  //     email: "",
-  //     telephone: "",
-  //     street: ["", ""],
-  //     country_id: "",
-  //     region: "",
-  //     city: "",
-  //     postcode: "",
-  //   },
-  // });
   const [shippingAddress, setShippingAddress] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -218,25 +205,61 @@ const ShippingAddress = () => {
                   onChange={(e) => handleInputsChange(e)}
                 >
                   <option value="">--Please Select--</option>
-                  <option value="US">United States</option>
+                  {/* <option value="US">United States</option> */}
                   <option value="IN">India</option>
                 </select>
               </div>
               <div className="form-group col-xs-6">
-                <label htmlFor="region" className="required">
+                <label htmlFor="region_id" className="required">
                   State/Province
                 </label>
-                <input
-                  id="region"
+                <select
+                  id="region_id"
                   className={`form-control ${
-                    errors.region ? "validation_failed" : ""
+                    errors.region_id ? "validation_failed" : ""
                   }`}
-                  type="text"
-                  placeholder="Region"
-                  {...register("region", { required: true })}
-                  value={shippingAddress?.region || ""}
+                  {...register("region_id", { required: "select one option" })}
+                  value={shippingAddress?.region_id || ""}
                   onChange={(e) => handleInputsChange(e)}
-                />
+                >
+                  <option value="">--Please Select--</option>
+                  <option value="569">Andaman and Nicobar Islands</option>
+                  <option value="570">Andhra Pradesh</option>
+                  <option value="571">Arunachal Pradesh</option>
+                  <option value="572">Assam</option>
+                  <option value="573">Bihar</option>
+                  <option value="574">Chandigarh</option>
+                  <option value="575">Chhattisgarh</option>
+                  <option value="576">Dadra and Nagar Haveli</option>
+                  <option value="577">Daman and Diu</option>
+                  <option value="578">Delhi</option>
+                  <option value="579">Goa</option>
+                  <option value="580">Gujarat</option>
+                  <option value="581">Haryana</option>
+                  <option value="582">Himachal Pradesh</option>
+                  <option value="583">Jammu and Kashmir</option>
+                  <option value="584">Jharkhand</option>
+                  <option value="585">Karnataka</option>
+                  <option value="586">Kerala</option>
+                  <option value="587">Lakshadweep</option>
+                  <option value="588">Madhya Pradesh</option>
+                  <option value="589">Maharashtra</option>
+                  <option value="590">Manipur</option>
+                  <option value="591">Meghalaya</option>
+                  <option value="592">Mizoram</option>
+                  <option value="593">Nagaland</option>
+                  <option value="594">Odisha</option>
+                  <option value="595">Puducherry</option>
+                  <option value="596">Punjab</option>
+                  <option value="597">Rajasthan</option>
+                  <option value="598">Sikkim</option>
+                  <option value="599">Tamil Nadu</option>
+                  <option value="600">Telangana</option>
+                  <option value="601">Tripura</option>
+                  <option value="602">Uttar Pradesh</option>
+                  <option value="603">Uttarakhand</option>
+                  <option value="604">West Bengal</option>
+                </select>
               </div>
             </div>
             <div className="row">

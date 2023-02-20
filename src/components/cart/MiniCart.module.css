@@ -49,6 +49,7 @@
 }
 .minicart__wrapper .showcart {
   white-space: nowrap;
+  color: var(--dark-gray) !important;
 }
 .minicart__wrapper .showcart img {
   width: 24px;

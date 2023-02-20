@@ -7,6 +7,7 @@ const AuthContext = React.createContext({
   token: null,
   cartId: null,
   setCartId: (id) => {},
+  onSuccess: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -45,6 +46,10 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("cartId", id);
     setCartId(id);
   };
+  const unsetCartId = () => {
+    localStorage.removeItem("cartId");
+    setCartId(null);
+  };
 
   return (
     <AuthContext.Provider
@@ -55,6 +60,7 @@ export const AuthContextProvider = (props) => {
         token: token,
         cartId: cartId,
         setCartId: cartIdHandler,
+        onSuccess: unsetCartId,
       }}
     >
       {props.children}

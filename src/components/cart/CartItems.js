@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MagentoConfig from "../../config/Magento";
 import { uiActions } from "../../store/ui-slice";
 import classes from "./CartItems.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const CartItems = (props) => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const CartItems = (props) => {
         <h3 className={classes.close__minicart}>
           Mini Cart
           <button id="close-minicart" onClick={props.minicartClose}>
-            <FontAwesomeIcon icon={faWindowClose} />
+            <AiOutlineCloseCircle size={30} />
           </button>
         </h3>
         <div className={classes.minicart__items_wrapper}>
